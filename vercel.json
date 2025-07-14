@@ -1,0 +1,26 @@
+{
+  "name": "marys-cosmic-sanctuary",
+  "version": 2,
+  "builds": [
+    {
+      "src": "frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "build"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/static/(.*)",
+      "dest": "/static/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ],
+  "env": {
+    "REACT_APP_BACKEND_URL": "https://be197ac7-1464-4f8e-877e-d6abdbac4a58.preview.emergentagent.com"
+  }
+}
