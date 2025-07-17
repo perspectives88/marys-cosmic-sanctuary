@@ -1,217 +1,99 @@
-/* =====================================================
-   MARY'S COSMIC SANCTUARY - DESIGN SYSTEM
-   ===================================================== */
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap');
 
-/* Custom CSS Variables for Cosmic Theme */
+/* CSS Variables - New Golden Cosmic Theme */
 :root {
-  /* Cosmic Color Palette */
-  --cosmic-navy: #0a0b1e;
-  --cosmic-deep: #1a1b3a;
-  --cosmic-purple: #2d1b3d;
-  --cosmic-lavender: #6b5b95;
-  --cosmic-rose: #d4a5a5;
-  --cosmic-gold: #e4d5a8;
-  --cosmic-silver: #c9d6ea;
-  --cosmic-white: #f7f9fc;
+  /* Primary Colors */
+  --cosmic-navy: #0B1426;
+  --cosmic-deep: #1A2332;
+  --cosmic-gold: #D4A574;
+  --cosmic-amber: #E6B887;
+  --cosmic-blue: #4A90A4;
+  --cosmic-teal: #5C9EAE;
+  --cosmic-silver: #B8C5D1;
+  --cosmic-light: #E8F0F5;
   
-  /* Glass & Transparency */
-  --glass-light: rgba(255, 255, 255, 0.1);
-  --glass-medium: rgba(255, 255, 255, 0.2);
-  --glass-dark: rgba(0, 0, 0, 0.3);
+  /* Glass Effects */
+  --glass-light: rgba(212, 165, 116, 0.1);
+  --glass-medium: rgba(212, 165, 116, 0.2);
+  --glass-strong: rgba(212, 165, 116, 0.3);
   
   /* Gradients */
-  --cosmic-gradient: linear-gradient(135deg, var(--cosmic-navy), var(--cosmic-deep), var(--cosmic-purple));
-  --aurora-gradient: linear-gradient(45deg, var(--cosmic-lavender), var(--cosmic-rose), var(--cosmic-gold));
-  --stardust-gradient: linear-gradient(120deg, var(--cosmic-silver), var(--cosmic-white));
-  
-  /* Shadows */
-  --cosmic-glow: 0 4px 20px rgba(107, 91, 149, 0.3);
-  --stellar-shadow: 0 8px 32px rgba(10, 11, 30, 0.4);
-  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  
-  /* Typography */
-  --font-cosmic: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-handwritten: 'Dancing Script', cursive;
+  --cosmic-gradient: linear-gradient(135deg, rgba(212, 165, 116, 0.2) 0%, rgba(74, 144, 164, 0.1) 100%);
+  --hero-gradient: linear-gradient(135deg, rgba(11, 20, 38, 0.9) 0%, rgba(26, 35, 50, 0.8) 100%);
 }
 
-/* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap');
-
-/* Base Styles */
+/* Reset and Base Styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 body {
-  font-family: var(--font-cosmic);
-  background: var(--cosmic-gradient);
-  background-attachment: fixed;
-  color: var(--cosmic-white);
+  font-family: 'Open Sans', sans-serif;
+  background: var(--cosmic-navy);
+  color: var(--cosmic-light);
   line-height: 1.6;
   overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Cosmic Background Effects */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: 
-    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.1) 0%, transparent 50%);
-  pointer-events: none;
-  z-index: -1;
+/* Typography */
+.cosmic-title {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 500;
+  color: var(--cosmic-amber);
+  text-shadow: 0 2px 8px rgba(212, 165, 116, 0.3);
 }
 
-/* Star Animation */
-.cosmic-stars {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
+.handwritten {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--cosmic-gold);
 }
 
-.star {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: var(--cosmic-white);
-  border-radius: 50%;
-  animation: twinkle 4s infinite ease-in-out;
-}
-
-@keyframes twinkle {
-  0%, 100% { opacity: 0.3; transform: scale(0.8); }
-  50% { opacity: 1; transform: scale(1.2); }
+.cosmic-text {
+  font-family: 'Open Sans', sans-serif;
+  color: var(--cosmic-silver);
+  font-weight: 300;
 }
 
 /* Glass Morphism Effects */
 .glass {
   background: var(--glass-light);
   backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--glass-medium);
-  box-shadow: var(--glass-shadow);
+  border-radius: 20px;
 }
 
 .glass-card {
-  @apply glass rounded-2xl p-6;
+  background: var(--glass-light);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-medium);
+  border-radius: 24px;
+  padding: 2rem;
   transition: all 0.3s ease;
 }
 
 .glass-card:hover {
   background: var(--glass-medium);
-  transform: translateY(-4px);
-  box-shadow: var(--cosmic-glow);
-}
-
-/* Typography Classes */
-.cosmic-title {
-  font-family: var(--font-cosmic);
-  font-weight: 700;
-  background: var(--aurora-gradient);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  line-height: 1.2;
-}
-
-.handwritten {
-  font-family: var(--font-handwritten);
-  font-weight: 500;
-  color: var(--cosmic-rose);
-}
-
-.cosmic-text {
-  color: var(--cosmic-silver);
-  font-weight: 400;
-}
-
-/* Button Styles */
-.cosmic-button {
-  @apply px-6 py-3 rounded-full font-medium transition-all duration-300;
-  background: var(--aurora-gradient);
-  color: var(--cosmic-navy);
-  border: none;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-}
-
-.cosmic-button:hover {
+  border-color: var(--glass-strong);
   transform: translateY(-2px);
-  box-shadow: var(--cosmic-glow);
+  box-shadow: 0 10px 40px rgba(212, 165, 116, 0.2);
 }
 
-.cosmic-button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  transition: left 0.6s;
-}
-
-.cosmic-button:hover::before {
-  left: 100%;
-}
-
-.ghost-button {
-  @apply px-6 py-3 rounded-full font-medium transition-all duration-300;
-  background: transparent;
-  color: var(--cosmic-silver);
-  border: 2px solid var(--cosmic-lavender);
-}
-
-.ghost-button:hover {
-  background: var(--cosmic-lavender);
-  color: var(--cosmic-white);
-  transform: translateY(-2px);
-}
-
-/* Input Styles */
-.cosmic-input {
-  @apply w-full px-4 py-3 rounded-xl border-0 outline-none transition-all duration-300;
-  background: var(--glass-light);
-  backdrop-filter: blur(10px);
-  color: var(--cosmic-white);
-  border: 1px solid var(--glass-medium);
-}
-
-.cosmic-input::placeholder {
-  color: var(--cosmic-silver);
-  opacity: 0.7;
-}
-
-.cosmic-input:focus {
-  background: var(--glass-medium);
-  border-color: var(--cosmic-lavender);
-  box-shadow: 0 0 0 3px rgba(107, 91, 149, 0.1);
-}
-
-/* Card Styles */
+/* Cosmic Cards */
 .cosmic-card {
-  @apply glass-card;
-  border-radius: 1.5rem;
-  overflow: hidden;
+  background: var(--cosmic-gradient);
+  backdrop-filter: blur(25px);
+  border: 1px solid var(--glass-medium);
+  border-radius: 24px;
+  padding: 1.5rem;
+  transition: all 0.4s ease;
   position: relative;
+  overflow: hidden;
 }
 
 .cosmic-card::before {
@@ -221,80 +103,200 @@ body::before {
   left: 0;
   right: 0;
   height: 1px;
-  background: var(--aurora-gradient);
+  background: linear-gradient(90deg, transparent, var(--cosmic-gold), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-/* Navigation Styles */
+.cosmic-card:hover::before {
+  opacity: 1;
+}
+
+.cosmic-card:hover {
+  background: var(--glass-medium);
+  transform: translateY(-4px);
+  box-shadow: 0 15px 50px rgba(212, 165, 116, 0.25);
+  border-color: var(--cosmic-gold);
+}
+
+/* Product Cards */
+.product-card {
+  background: var(--cosmic-gradient);
+  backdrop-filter: blur(25px);
+  border: 1px solid var(--glass-medium);
+  border-radius: 24px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  position: relative;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(212, 165, 116, 0.3);
+  border-color: var(--cosmic-gold);
+}
+
+/* Buttons */
+.cosmic-button {
+  background: linear-gradient(135deg, var(--cosmic-gold), var(--cosmic-amber));
+  color: var(--cosmic-navy);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(212, 165, 116, 0.3);
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+.cosmic-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(212, 165, 116, 0.4);
+  background: linear-gradient(135deg, var(--cosmic-amber), var(--cosmic-gold));
+}
+
+.ghost-button {
+  background: transparent;
+  color: var(--cosmic-silver);
+  border: 1px solid var(--glass-medium);
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+.ghost-button:hover {
+  border-color: var(--cosmic-gold);
+  color: var(--cosmic-gold);
+  background: var(--glass-light);
+  transform: translateY(-1px);
+}
+
+/* Form Elements */
+.cosmic-input {
+  background: var(--glass-light);
+  border: 1px solid var(--glass-medium);
+  border-radius: 12px;
+  padding: 12px 16px;
+  color: var(--cosmic-light);
+  font-family: 'Open Sans', sans-serif;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.cosmic-input:focus {
+  outline: none;
+  border-color: var(--cosmic-gold);
+  box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.1);
+}
+
+.cosmic-input::placeholder {
+  color: var(--cosmic-silver);
+  opacity: 0.7;
+}
+
+/* Navigation */
 .navbar-glass {
-  background: rgba(10, 11, 30, 0.8);
+  background: rgba(11, 20, 38, 0.9);
   backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--glass-medium);
 }
 
-/* Animation Classes */
-.fade-in {
-  animation: fadeIn 0.8s ease-out;
-}
-
-.slide-up {
-  animation: slideUp 0.8s ease-out;
-}
-
-.float {
-  animation: float 6s ease-in-out infinite;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes slideUp {
-  from { 
-    opacity: 0; 
-    transform: translateY(30px); 
-  }
-  to { 
-    opacity: 1; 
-    transform: translateY(0); 
-  }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-}
-
-/* Handwritten Underline Animation */
-.handwritten-underline {
-  position: relative;
-  display: inline-block;
-}
-
-.handwritten-underline::after {
-  content: '';
+/* Cosmic Background Effects */
+.cosmic-stars {
   position: absolute;
-  bottom: -4px;
+  top: 0;
   left: 0;
-  width: 0;
-  height: 3px;
-  background: var(--cosmic-rose);
-  border-radius: 2px;
-  transition: width 0.8s ease-out;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
 }
 
-.handwritten-underline:hover::after,
-.handwritten-underline.animate::after {
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: var(--cosmic-gold);
+  border-radius: 50%;
+  animation: twinkle 4s infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Golden Orbital Animation */
+.orbital-rings {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 300px;
+  pointer-events: none;
+}
+
+.orbital-ring {
+  position: absolute;
+  border: 1px solid var(--cosmic-gold);
+  border-radius: 50%;
+  opacity: 0.3;
+  animation: rotate 20s linear infinite;
+}
+
+.orbital-ring:nth-child(1) {
   width: 100%;
+  height: 100%;
+  animation-duration: 20s;
+}
+
+.orbital-ring:nth-child(2) {
+  width: 120%;
+  height: 120%;
+  top: -10%;
+  left: -10%;
+  animation-duration: 30s;
+  animation-direction: reverse;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Shimmer Effects */
+.shimmer-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-animation {
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
 }
 
 /* Loading Spinner */
 .cosmic-spinner {
   width: 40px;
   height: 40px;
-  border: 3px solid var(--glass-light);
-  border-top: 3px solid var(--cosmic-lavender);
+  border: 3px solid var(--glass-medium);
+  border-top: 3px solid var(--cosmic-gold);
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
@@ -304,159 +306,146 @@ body::before {
   100% { transform: rotate(360deg); }
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .cosmic-title {
-    font-size: 2rem;
-  }
-  
-  .glass-card {
-    padding: 1rem;
-    margin: 0.5rem;
-  }
-  
-  .cosmic-button, .ghost-button {
-    padding: 0.75rem 1.5rem;
-    font-size: 0.9rem;
-  }
-}
-
-/* Journal Specific Styles */
-.journal-sanctuary {
-  background: radial-gradient(ellipse at center, rgba(107, 91, 149, 0.1) 0%, transparent 70%);
-  min-height: 100vh;
-  padding: 2rem 0;
-}
-
-.writing-space {
-  @apply glass-card;
-  min-height: 400px;
-  border: 2px solid var(--cosmic-lavender);
-}
-
-.writing-space:focus-within {
-  border-color: var(--cosmic-rose);
-  box-shadow: 0 0 0 3px rgba(212, 165, 165, 0.1);
-}
-
-/* Blog Post Styles */
-.blog-content {
-  @apply cosmic-text leading-relaxed;
-}
-
-.blog-content h1, .blog-content h2, .blog-content h3 {
-  @apply cosmic-title mb-4;
-}
-
-.blog-content p {
-  @apply mb-4;
-}
-
-.blog-content blockquote {
-  @apply border-l-4 border-cosmic-lavender pl-4 italic my-6;
-  color: var(--cosmic-rose);
-}
-
-/* Product Card Animations */
-.product-card {
-  @apply cosmic-card cursor-pointer;
-  transform-style: preserve-3d;
-  transition: all 0.5s ease;
-}
-
-.product-card:hover {
-  transform: rotateY(5deg) rotateX(5deg);
-}
-
-/* Success Page Styles */
-.success-celebration {
-  background: radial-gradient(circle, var(--cosmic-gold) 0%, transparent 70%);
-  animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { transform: scale(1); opacity: 0.8; }
-  50% { transform: scale(1.05); opacity: 1; }
-}
-
-/* Scrollbar Styling */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--cosmic-navy);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--cosmic-lavender);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--cosmic-rose);
-}
-
-/* Card Shimmer Effects */
-.shimmer-effect {
-  position: relative;
-  overflow: hidden;
-}
-
-.shimmer-animation {
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(228, 213, 168, 0.4),
-    rgba(201, 214, 234, 0.4),
-    rgba(228, 213, 168, 0.4),
-    transparent
-  );
-  animation: shimmer 2s infinite;
-}
-
-@keyframes shimmer {
-  0% {
-    left: -100%;
-  }
-  100% {
-    left: 100%;
-  }
-}
-
-/* Card Glitter Effect */
-.card-glitter {
+/* Hero Background Styles */
+.hero-cosmic-background {
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   position: relative;
 }
 
-.card-glitter::before {
+.hero-cosmic-background::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at 20% 80%, rgba(228, 213, 168, 0.6) 0%, transparent 50%),
-              radial-gradient(circle at 80% 20%, rgba(201, 214, 234, 0.6) 0%, transparent 50%),
-              radial-gradient(circle at 40% 40%, rgba(212, 165, 165, 0.4) 0%, transparent 50%);
-  opacity: 0;
-  animation: glitter 3s ease-in-out infinite;
-  pointer-events: none;
-  border-radius: inherit;
+  background: var(--hero-gradient);
+  z-index: 1;
 }
 
-@keyframes glitter {
-  0%, 100% { 
-    opacity: 0;
-    transform: scale(1);
+/* Writing Room Styles */
+.journal-sanctuary {
+  background: var(--cosmic-navy);
+  position: relative;
+  min-height: 100vh;
+}
+
+.writing-space {
+  background: var(--glass-light);
+  border-radius: 20px;
+  padding: 2rem;
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-medium);
+}
+
+/* Handwritten Underline Animation */
+.handwritten-underline {
+  position: relative;
+}
+
+.handwritten-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--cosmic-gold);
+  transition: width 0.3s ease;
+}
+
+.handwritten-underline.animate::after {
+  width: 100%;
+}
+
+/* Success Celebration */
+.success-celebration {
+  background: var(--cosmic-gradient);
+  border: 2px solid var(--cosmic-gold);
+  animation: celebrate 2s ease-in-out;
+}
+
+@keyframes celebrate {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* Blog Content Styling */
+.blog-content {
+  font-family: 'Open Sans', sans-serif;
+  line-height: 1.8;
+}
+
+.blog-content h2 {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  color: var(--cosmic-amber);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.blog-content h3 {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  color: var(--cosmic-gold);
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.blog-content blockquote {
+  border-left: 4px solid var(--cosmic-gold);
+  padding-left: 1.5rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+  color: var(--cosmic-amber);
+  background: var(--glass-light);
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .cosmic-title {
+    font-size: 2.5rem;
   }
-  50% { 
-    opacity: 1;
-    transform: scale(1.02);
+  
+  .glass-card {
+    padding: 1.5rem;
+  }
+  
+  .cosmic-button, .ghost-button {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+  
+  .orbital-rings {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cosmic-title {
+    font-size: 2rem;
+  }
+  
+  .glass-card {
+    padding: 1rem;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .cosmic-stars,
+  .orbital-rings {
+    display: none;
+  }
+  
+  .glass-card {
+    border: 1px solid #ccc;
+    background: white;
+    color: black;
   }
 }
