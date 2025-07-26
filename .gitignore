@@ -1,0 +1,65 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+.idea/
+dist
+# dependencies
+node_modules/
+/.pnp
+.pnp.js
+.yarn/install-state.gz
+.vscode
+# testing
+/coverage
+dump.rdb
+chainlit.md
+.chainlit
+# next.js
+/.next/
+/out/
+.ipynb_checkpoints/
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment files with secrets - DO NOT COMMIT
+.env
+.env.local
+.env*.local
+backend/.env
+frontend/.env
+*token.json*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+*pyc*
+
+venv/
+.venv/
+__pycache__/
+
+# Archive files
+**/*.zip
+**/*.tar.gz
+**/*.tar
+**/*.tgz
+
+# Build caches and artifacts
+.cache/
+*.pack
+
+# System packages
+*.deb
+
+# Python native libraries
+*.dylib
