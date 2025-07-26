@@ -19,12 +19,10 @@ const Navbar = () => {
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
-    { name: 'Speaking', path: '/speaking' },
     { name: 'Shop', path: '/shop' },
     { name: 'The Writing Room', path: '/writing-room' },
     { name: 'Yes...And Room', path: '/yes-and' },
     { name: 'Blog', path: '/blog' },
-    { name: 'Testimonials', path: '/testimonials' },
     { name: 'Contact', path: '/contact' },
   ];
 
@@ -121,3 +119,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
