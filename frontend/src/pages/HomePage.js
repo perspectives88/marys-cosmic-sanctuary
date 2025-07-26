@@ -15,7 +15,7 @@ const HomePage = () => {
     const testApi = async () => {
       try {
         const response = await axios.get(`${API}/`);
-        setApiStatus('connected ✨');
+        setApiStatus('connected <span className="text-cosmic-gold">⁎</span>');
         console.log('API Response:', response.data.message);
       } catch (error) {
         setApiStatus('connection error');
@@ -58,14 +58,14 @@ const HomePage = () => {
     <div className="relative">
       {/* Hero Section */}
       <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
-        {/* Background Image */}
+        {/* Background Image - Custom Orbital Rings */}
         <div 
           className="absolute inset-0 z-0"
           style={{
-            backgroundImage: 'url(https://images.unsplash.com/photo-1519810755548-39cd217da494)',
+            backgroundImage: 'url(/760C6A8D-986F-4464-8539-6E04B6112108.png)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-            filter: 'brightness(0.3) blur(0.5px)'
+            filter: 'brightness(0.4) blur(0.3px)'
           }}
         />
         
@@ -80,23 +80,22 @@ const HomePage = () => {
           animate="visible"
         >
           <motion.div className="handwritten text-2xl text-cosmic-rose mb-4">
-            Welcome to your digital sanctuary
+            Welcome to your digital sanctuary, created by Perspectives by Mary
           </motion.div>
           
           <motion.h1 className="cosmic-title text-5xl md:text-7xl mb-6 leading-tight">
-            Mary's Cosmic
+            Your Space for
             <br />
-            <span className="handwritten text-cosmic-gold">Sanctuary</span>
+            <span className="handwritten text-cosmic-gold">Reflection</span>
           </motion.h1>
           
           <motion.p className="cosmic-text text-xl md:text-2xl mb-8 max-w-2xl mx-auto leading-relaxed">
-            A space for healing, storytelling, and authentic growth. 
-            Join our community of deep feelers navigating life's transitions with grace and wisdom.
+            A digital sanctuary for reflection, journaling, and quiet perspective shifts.
           </motion.p>
           
           <motion.div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link to="/writing-room" className="cosmic-button text-lg px-8 py-4">
-              Enter the Writing Room ✨
+              Enter the Writing Room <span className="text-cosmic-gold">⁎</span>
             </Link>
             <Link to="/about" className="ghost-button text-lg px-8 py-4">
               Meet Mary
@@ -217,9 +216,14 @@ const HomePage = () => {
             viewport={{ once: true }}
           >
             <ConvertKitForm 
-              title="Join Our Cosmic Community"
-              description="Be the first to receive new journaling prompts, healing insights, and exclusive content for deep feelers and cosmic explorers."
-              buttonText="Enter the Sanctuary ✨"
+              title="Words for the in-between"
+              description="Straight to your inbox. Stay close for prompts, perspective shifts, and first looks."
+              buttonText={
+                <>
+                  Enter the Sanctuary{' '}
+                  <span className="text-cosmic-gold">⁎</span>
+                </>
+              }
             />
           </motion.div>
         </div>
@@ -229,3 +233,4 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
