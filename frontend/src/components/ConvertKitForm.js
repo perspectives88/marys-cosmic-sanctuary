@@ -1,44 +1,62 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
+import ReCAPTCHA from 'react-google-recaptcha';
+import axios from 'axios';
+
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const API = `${BACKEND_URL}/api`;
 
 const ConvertKitForm = ({ 
-  title = "Join Our Cosmic Community", 
-  description = "Get exclusive journaling prompts, healing insights, and updates delivered to your inbox.",
+  title = "Words for the in-between", 
+  description = "Straight to your inbox. Stay close for prompts, perspective shifts, and first looks.",
   placeholder = "Enter your email address",
-  buttonText = "Join the Sanctuary ✨",
+  buttonText = (
+    <>
+      Join the Sanctuary{' '}
+      <span className="text-cosmic-gold">⁎</span>
+    </>
+  ),
   inline = false 
 }) => {
   const [email, setEmail] = useState('');
   const [firstName, setFirstName] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubscribed, setIsSubscribed] = useState(false);
+  const [recaptchaToken, setRecaptchaToken] = useState(null);
+  const recaptchaRef = useRef();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    if (!recaptchaToken) {
+      alert('Please complete the reCAPTCHA verification');
+      return;
+    }
+    
     setIsSubmitting(true);
 
-    // Create form data for ConvertKit
-    const formData = new FormData();
-    formData.append('email_address', email);
-    if (firstName) {
-      formData.append('fields[first_name]', firstName);
-    }
-
     try {
-      const response = await fetch('https://app.kit.com/forms/8151471/subscriptions', {
-        method: 'POST',
-        body: formData,
-        mode: 'no-cors' // Required for ConvertKit
+      // Use our backend API with reCAPTCHA verification
+      await axios.post(`${API}/newsletter/subscribe`, {
+        email,
+        first_name: firstName,
+        recaptcha_token: recaptchaToken
       });
 
-      // Since we're using no-cors, we can't check the response
-      // but ConvertKit will handle the subscription
       setIsSubscribed(true);
       setEmail('');
       setFirstName('');
+      setRecaptchaToken(null);
+      if (recaptchaRef.current) {
+        recaptchaRef.current.reset();
+      }
     } catch (error) {
       console.error('Subscription error:', error);
-      setIsSubscribed(true); // Assume success since we can't check response
+      if (error.response?.data?.detail === 'reCAPTCHA verification failed') {
+        alert('Security verification failed. Please try again.');
+      } else {
+        alert('Failed to subscribe. Please try again.');
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -51,7 +69,7 @@ const ConvertKitForm = ({
         animate={{ opacity: 1, scale: 1 }}
         className={`text-center ${inline ? 'p-4' : 'glass-card p-6'}`}
       >
-        <div className="text-4xl mb-4">✨</div>
+        <div className="text-4xl mb-4 text-cosmic-gold">⁎</div>
         <h3 className="cosmic-title text-xl mb-2">Welcome to the Sanctuary!</h3>
         <p className="cosmic-text">
           Check your email to confirm your subscription and receive your first journaling prompt.
@@ -90,9 +108,20 @@ const ConvertKitForm = ({
           />
         </div>
 
+        {/* reCAPTCHA */}
+        <div className="flex justify-center">
+          <ReCAPTCHA
+            ref={recaptchaRef}
+            sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
+            onChange={(token) => setRecaptchaToken(token)}
+            onExpired={() => setRecaptchaToken(null)}
+            theme="dark"
+          />
+        </div>
+
         <button
           type="submit"
-          disabled={isSubmitting || !email}
+          disabled={isSubmitting || !email || !recaptchaToken}
           className="cosmic-button w-full disabled:opacity-50"
         >
           {isSubmitting ? (
@@ -114,3 +143,4 @@ const ConvertKitForm = ({
 };
 
 export default ConvertKitForm;
+
