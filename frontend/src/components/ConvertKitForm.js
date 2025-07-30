@@ -1,10 +1,5 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import ReCAPTCHA from 'react-google-recaptcha';
-import axios from 'axios';
-
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
 
 const ConvertKitForm = ({ 
   title = "Words for the in-between", 
@@ -22,44 +17,16 @@ const ConvertKitForm = ({
   const [firstName, setFirstName] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubscribed, setIsSubscribed] = useState(false);
-  const [recaptchaToken, setRecaptchaToken] = useState(null);
-  const recaptchaRef = useRef();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    if (!recaptchaToken) {
-      alert('Please complete the reCAPTCHA verification');
-      return;
-    }
-    
     setIsSubmitting(true);
 
-    try {
-      // Use our backend API with reCAPTCHA verification
-      await axios.post(`${API}/newsletter/subscribe`, {
-        email,
-        first_name: firstName,
-        recaptcha_token: recaptchaToken
-      });
-
+    // Simulate form submission for now
+    setTimeout(() => {
       setIsSubscribed(true);
-      setEmail('');
-      setFirstName('');
-      setRecaptchaToken(null);
-      if (recaptchaRef.current) {
-        recaptchaRef.current.reset();
-      }
-    } catch (error) {
-      console.error('Subscription error:', error);
-      if (error.response?.data?.detail === 'reCAPTCHA verification failed') {
-        alert('Security verification failed. Please try again.');
-      } else {
-        alert('Failed to subscribe. Please try again.');
-      }
-    } finally {
       setIsSubmitting(false);
-    }
+    }, 1000);
   };
 
   if (isSubscribed) {
@@ -72,7 +39,7 @@ const ConvertKitForm = ({
         <div className="text-4xl mb-4 text-cosmic-gold">⁎</div>
         <h3 className="cosmic-title text-xl mb-2">Welcome to the Sanctuary!</h3>
         <p className="cosmic-text">
-          Check your email to confirm your subscription and receive your first journaling prompt.
+          Thank you for joining! Stay tuned for updates.
         </p>
       </motion.div>
     );
@@ -108,20 +75,9 @@ const ConvertKitForm = ({
           />
         </div>
 
-        {/* reCAPTCHA */}
-        <div className="flex justify-center">
-          <ReCAPTCHA
-            ref={recaptchaRef}
-            sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
-            onChange={(token) => setRecaptchaToken(token)}
-            onExpired={() => setRecaptchaToken(null)}
-            theme="dark"
-          />
-        </div>
-
         <button
           type="submit"
-          disabled={isSubmitting || !email || !recaptchaToken}
+          disabled={isSubmitting || !email}
           className="cosmic-button w-full disabled:opacity-50"
         >
           {isSubmitting ? (
@@ -143,4 +99,3 @@ const ConvertKitForm = ({
 };
 
 export default ConvertKitForm;
-
