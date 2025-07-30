@@ -8,23 +8,7 @@ const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
 const HomePage = () => {
-  const [apiStatus, setApiStatus] = useState('checking...');
 
-  useEffect(() => {
-    // Test API connection
-    const testApi = async () => {
-      try {
-        const response = await axios.get(`${API}/`);
-        setApiStatus('connected <span className="text-cosmic-gold">⁎</span>');
-        console.log('API Response:', response.data.message);
-      } catch (error) {
-        setApiStatus('connection error');
-        console.error('API Error:', error);
-      }
-    };
-
-    testApi();
-  }, []);
 
   const heroVariants = {
     hidden: { opacity: 0, y: 30 },
@@ -119,7 +103,6 @@ const HomePage = () => {
                 animationDelay: `${Math.random() * 4}s`,
               }}
             />
-          ))}
         </div>
       </section>
 
