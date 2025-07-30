@@ -1,15 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import axios from 'axios';
 import ConvertKitForm from '../components/ConvertKitForm';
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
-
 const HomePage = () => {
-
-
   const heroVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: { 
@@ -85,10 +79,6 @@ const HomePage = () => {
               Meet Mary
             </Link>
           </motion.div>
-          
-          <motion.div className="mt-8 text-sm cosmic-text">
-            API Status: {apiStatus}
-          </motion.div>
         </motion.div>
 
         {/* Floating Stars */}
@@ -103,6 +93,7 @@ const HomePage = () => {
                 animationDelay: `${Math.random() * 4}s`,
               }}
             />
+          ))}
         </div>
       </section>
 
@@ -216,4 +207,3 @@ const HomePage = () => {
 };
 
 export default HomePage;
-
